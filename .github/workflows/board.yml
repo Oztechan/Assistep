@@ -15,7 +15,7 @@ on:
       - converted_to_draft
 jobs:
   ProjectAutomations:
-    runs-on: ubuntu-lates
+    runs-on: ubuntu-latest
     steps:
       - name: 'Move issue to "📖 To do"'
         if: github.event_name == 'issues' && (github.event.action == 'opened' || github.event.action == 'reopened')
