@@ -1,18 +1,21 @@
+rootProject.name = "Assistep"
+
 pluginManagement {
     repositories {
         google()
         gradlePluginPortal()
-        mavenCentral()
     }
 }
 
 dependencyResolutionManagement {
+    @Suppress("UnstableApiUsage")
     repositories {
         google()
         mavenCentral()
     }
 }
 
-rootProject.name = "Assistep"
-include(":android")
-include(":client")
+include(
+    ":android",
+    ":client"
+)
