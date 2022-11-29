@@ -1,5 +1,5 @@
 import SwiftUI
-import client
+import Client
 
 struct ContentView: View {
 	let greet = Greeting().greet()

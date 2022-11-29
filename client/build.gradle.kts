@@ -1,26 +1,29 @@
 plugins {
-    kotlin("multiplatform")
-    id("com.android.library")
+    with(Dependencies.Plugins) {
+        kotlin(MULTIPLATFORM)
+        id(ANDROID_LIB)
+    }
 }
 
 kotlin {
     android()
-    
+
     listOf(
         iosX64(),
         iosArm64(),
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "client"
+            baseName = Dependencies.Frameworks.CLIENT
         }
     }
 
+    @Suppress("UNUSED_VARIABLE")
     sourceSets {
         val commonMain by getting
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(kotlin(Dependencies.Common.TEST))
             }
         }
         val androidMain by getting
@@ -47,10 +50,14 @@ kotlin {
 }
 
 android {
-    namespace = "com.oztechan.assistep"
-    compileSdk = 33
-    defaultConfig {
-        minSdk = 21
-        targetSdk = 33
+    with(ProjectSettings) {
+        namespace = "$PROJECT_ID.client"
+        compileSdk = COMPILE_SDK_VERSION
+
+        @Suppress("UnstableApiUsage")
+        defaultConfig {
+            minSdk = MIN_SDK_VERSION
+            targetSdk = TARGET_SDK_VERSION
+        }
     }
 }
